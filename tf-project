@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+source "$BASE_DIR/lib/config.sh"
+source "$BASE_DIR/lib/oci.sh"
+source "$BASE_DIR/lib/terraform.sh"
+source "$BASE_DIR/lib/ssh.sh"
+
+case "${1:-}" in
+  create)
+    shift
+    create_instance "$@"
+    ;;
+  list)
+    list_instances
+    ;;
+  ssh)
+    shift
+    tf_ssh "$@"
+    ;;
+  destroy)
+    shift
+    destroy_instance "$@"
+    ;;
+  *)
+    echo "Usage: ./tf-project create|list|ssh|destroy"
+    ;;
+esac
