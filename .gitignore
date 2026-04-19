@@ -1,0 +1,12 @@
+# Terraform
+tf/.terraform/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Cache
+.subnet.cache
+
+# Logs
+*.log
